@@ -30,8 +30,6 @@ export const AppProvider = ({ children }: Provider): any => {
 			.catch(err => setError(err.message))
 	}, [])
 
-	console.log(games)
-
 	return (
 		<AppContext.Provider
 			value={{
