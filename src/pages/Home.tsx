@@ -1,4 +1,5 @@
 import { GameListContainer } from 'components/GameList/GameList.container'
+import { ErrorBoundary } from 'hoc/withErrorBoundary'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -10,7 +11,7 @@ const Home: React.FC = () => {
 	)
 }
 
-export default Home
+export default ErrorBoundary(Home)
 
 const HomeContainer = styled.div`
 	max-width: 1200px;
