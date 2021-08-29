@@ -2,6 +2,7 @@ import { GameListContainer } from 'components/GameList/GameList.container'
 import { ErrorBoundary } from 'hoc/withErrorBoundary'
 import React from 'react'
 import styled from 'styled-components'
+import { breakpoints } from 'styles/breakpoints'
 
 const Home: React.FC = () => {
 	return (
@@ -14,6 +15,15 @@ const Home: React.FC = () => {
 export default ErrorBoundary(Home)
 
 const HomeContainer = styled.div`
-	max-width: 1200px;
-	margin: 50px auto;
+	/* max-width: 1200px;
+	margin: 50px auto; */
+
+	/*  alternative use cases */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	@media (min-width: ${breakpoints.tablet}) {
+		padding: 50px 300px;
+	}
 `
