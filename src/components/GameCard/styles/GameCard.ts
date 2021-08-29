@@ -1,4 +1,10 @@
-import { primaryTextColor, secondaryColor } from './../../../styles/theme/index'
+import {
+	backgroundColor,
+	primaryTextColor,
+	secondaryColor,
+	secondaryTextColor,
+	tertiaryTextColor,
+} from './../../../styles/theme/index'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
@@ -19,7 +25,7 @@ export const ImageLink = styled.img`
 	border-top-right-radius: 10px;
 `
 
-export const CardInfo = styled.div`
+export const CardDetails = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
@@ -32,4 +38,37 @@ export const CardTitle = styled.h2`
 	font-size: 24px;
 	font-weight: 500;
 	color: ${primaryTextColor};
+`
+export const CardDescription = styled.p`
+	font-size: 16px;
+	color: ${secondaryTextColor};
+`
+
+export const IconTagContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+`
+
+export const GenreTag = styled.p`
+	padding: 5px 5px;
+	margin: 0 8px 0 0;
+	height: 100%;
+	/* margin-left: auto; */
+
+	border-radius: 5px;
+	font-size: 13px;
+	font-weight: bold;
+	color: ${tertiaryTextColor};
+	background-color: ${backgroundColor};
+`
+
+export const IconContainer = styled.div`
+	display: flex;
+	gap: 1rem;
+	margin-left: 5px;
+`
+
+export const Icon = styled.img`
+	width: 25px;
+	height: 25px;
 `
