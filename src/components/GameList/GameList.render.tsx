@@ -2,6 +2,7 @@ import React from 'react'
 import { GameCard } from 'components/GameCard'
 
 import { Game } from '../../types'
+import { ListContainer, ListItem } from './styles/GameList'
 
 interface Props {
 	err?: string
@@ -18,12 +19,12 @@ export const GameList: React.FC<Props> = ({ err, games }: Props) => {
 	}
 
 	return (
-		<ul>
+		<ListContainer>
 			{games?.map(game => (
-				<li key={game.id}>
+				<ListItem key={game.id}>
 					<GameCard content={game} />
-				</li>
+				</ListItem>
 			))}
-		</ul>
+		</ListContainer>
 	)
 }
