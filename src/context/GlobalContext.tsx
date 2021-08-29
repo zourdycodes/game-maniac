@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from 'axios'
-import React, { createContext, useEffect, useState } from 'react'
-import { Game } from 'types'
-import { API_KEY, API_HOST } from './constant'
+import React, { createContext, useState } from 'react'
+import { useFetch } from 'hooks/useFetch'
+import { Filter } from './types'
 
 interface Provider {
 	children: any
@@ -11,30 +10,19 @@ interface Provider {
 export const AppContext = createContext({} as any)
 
 export const AppProvider = ({ children }: Provider): any => {
-	const [games, setGames] = useState<Game[]>([])
-	const [error, setError] = useState<string>('')
+	const [filter, setFilter] = useState<Filter>({
+		platform: 'browser',
+		sortBy: 'relevance',
+	})
 
-	useEffect(() => {
-		axios
-			.get('/games', {
-				baseURL: `https://${API_HOST}/api`,
-				headers: {
-					'X-RapidAPI-Host': API_HOST,
-					'X-RapidAPI-Key': API_KEY,
-				},
-				params: {
-					platform: 'browser',
-				},
-			})
-			.then(res => setGames(res.data))
-			.catch(err => setError(err.message))
-	}, [])
+	const { games, error } = useFetch(filter)
 
 	return (
 		<AppContext.Provider
 			value={{
 				games,
 				error,
+				setFilter,
 			}}
 		>
 			{children}

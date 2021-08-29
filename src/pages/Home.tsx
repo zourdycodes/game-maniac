@@ -20,10 +20,13 @@ const HomeContainer = styled.div`
 
 	/*  alternative use cases */
 	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 	justify-content: center;
 	align-items: center;
 
 	@media (min-width: ${breakpoints.tablet}) {
 		padding: 50px 300px;
+		gap: 2rem;
 	}
 `

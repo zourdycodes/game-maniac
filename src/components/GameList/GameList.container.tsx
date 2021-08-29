@@ -1,9 +1,28 @@
-import { useGlobalContext } from 'hooks/useGlobalContext'
+import { useFetch } from 'hooks/useFetch'
 import React, { ChangeEvent, ReactElement, useCallback, useState } from 'react'
 import { GameList } from './GameList.render'
 
-export const GameListContainer = (): ReactElement => {
-	const { error, games } = useGlobalContext()
+type Filter = {
+	platform: string
+	genre?: string
+	tag?: string
+	sortBy: string
+}
 
-	return <GameList err={error} games={games} />
+export const GameListContainer = (): ReactElement => {
+	const [filter, setFilter] = useState<Filter>({
+		platform: 'browser',
+		sortBy: 'relevance',
+	})
+	const { games, error } = useFetch(filter)
+
+	const onFilterChange = useCallback((event: ChangeEvent<HTMLFormElement>) => {
+		setFilter(current => ({
+			...current,
+			[event.target.name]: event.target.value,
+		}))
+		event.preventDefault()
+	}, [])
+
+	return <GameList err={error} games={games} onFilterChange={onFilterChange} />
 }
